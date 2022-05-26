@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
     }
+    document.getElementById('answer-box').addEventListener("keydown", function(event){
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
     runGame("addition");
 });
 
@@ -23,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 
 function runGame(gameType) {
+    document.getElementById('answer-box').value = "";
+    document.getElementById('answer-box').focus();
     // creates two random numbers between 1-25;
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
@@ -117,8 +124,8 @@ function displayAdditionQuestion(operand1, operand2) {
 }
 
 function displaySubstractQuestion(operand1, operand2) {
-    document.getElementById('operand1').textContent = operand1;
-    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "-";
 }
 
